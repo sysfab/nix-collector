@@ -1,7 +1,7 @@
 # Collector - Drag and Drop to the next level
 
 <p align="center">
-<img width="200" src="data/icons/hicolor/scalable/apps/it.mijorus.collector.svg">
+<img width="200" src="data/icons/hicolor/scalable/apps/sysfab.nix.collector.svg">
 </p>
 
 Drag multiple files and folders on to Collection window, drop them anywhere!
@@ -15,9 +15,10 @@ Drag multiple files and folders on to Collection window, drop them anywhere!
 - Modern design built with LibAdawaita
 
 ## Get the app
-<a href="https://flathub.org/it/apps/it.mijorus.collector" align="center">
-  <img width="200" src="https://flathub.org/assets/badges/flathub-badge-i-en.png">
-</a>
+
+```bash
+nix run .#collector
+```
 
 ## Get the GNOME extension
 

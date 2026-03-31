@@ -1,4 +1,4 @@
-application_id = 'it.mijorus.collector'
+application_id = 'sysfab.nix.collector'
 
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
 install_data(

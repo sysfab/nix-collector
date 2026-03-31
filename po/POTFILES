@@ -1,6 +1,6 @@
-data/it.mijorus.collector.desktop.in
-data/it.mijorus.collector.gschema.xml
-data/it.mijorus.collector.metainfo.xml.in
+data/sysfab.nix.collector.desktop.in
+data/sysfab.nix.collector.gschema.xml
+data/sysfab.nix.collector.metainfo.xml.in
 src/gtk/help-overlay.ui
 src/gtk/main-menu.ui
 src/gtk/preferences.ui

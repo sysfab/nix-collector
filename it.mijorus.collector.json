@@ -1,5 +1,5 @@
 {
-    "id": "it.mijorus.collector",
+    "id": "sysfab.nix.collector",
     "runtime": "org.gnome.Platform",
     "runtime-version": "49",
     "sdk": "org.gnome.Sdk",

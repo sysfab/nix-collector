@@ -1,6 +1,6 @@
 desktop_file = i18n.merge_file(
-        input: 'it.mijorus.collector.desktop.in',
-       output: 'it.mijorus.collector.desktop',
+        input: 'sysfab.nix.collector.desktop.in',
+       output: 'sysfab.nix.collector.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -13,8 +13,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-        input: 'it.mijorus.collector.metainfo.xml.in',
-       output: 'it.mijorus.collector.metainfo.xml',
+        input: 'sysfab.nix.collector.metainfo.xml.in',
+       output: 'sysfab.nix.collector.metainfo.xml',
        po_dir: '../po',
       install: true,
   install_dir: get_option('datadir') / 'metainfo'
@@ -24,7 +24,7 @@ appstreamcli = find_program('appstreamcli', required: false, disabler: true)
 test('Validate appstream file', appstreamcli,
      args: ['validate', '--no-net', '--explain', appstream_file])
 
-install_data('it.mijorus.collector.gschema.xml',
+install_data('sysfab.nix.collector.gschema.xml',
   install_dir: get_option('datadir') / 'glib-2.0' / 'schemas'
 )
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-	<id>it.mijorus.collector.desktop</id>
+	<id>sysfab.nix.collector.desktop</id>
 	<name translate="no">Collector</name>
     <summary>Drag and Drop to the next level</summary>
     <url type="donation">https://ko-fi.com/mijorus</url>
@@ -19,7 +19,7 @@
         <p>Collector is a simple utility that allows you to drag multiple files into a single window and drop them anywhere! It can also download images automatically when pasting urls.</p>
     </description>
     <translation type="gettext">collector</translation>
-    <launchable type="desktop-id">it.mijorus.collector.desktop</launchable>
+    <launchable type="desktop-id">sysfab.nix.collector.desktop</launchable>
 	<releases>
         <release type="stable" version="1.0.3" date="2026-02-03T00:00:00Z">
             <description translate="no">

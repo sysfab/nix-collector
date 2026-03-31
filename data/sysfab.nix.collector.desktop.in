@@ -3,7 +3,7 @@
 Name=Collector
 Exec=collector
 Comment=Drag and Drop to the next level
-Icon=it.mijorus.collector
+Icon=sysfab.nix.collector
 Terminal=false
 Type=Application
 Categories=Utility;
