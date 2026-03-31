@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+import gettext
+import locale
+import os
+import signal
+import sys
+from pathlib import Path
+
+VERSION = "1.0.3"
+
+prefix = Path(__file__).resolve().parent.parent
+pkgdatadir = prefix / "share" / "collector"
+localedir = prefix / "share" / "locale"
+
+sys.path.insert(1, str(pkgdatadir))
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+locale.bindtextdomain("collector", str(localedir))
+locale.textdomain("collector")
+gettext.install("collector", str(localedir))
+
+
+if __name__ == "__main__":
+    import gi
+    from gi.repository import Gio
+
+    resource = Gio.Resource.load(os.path.join(pkgdatadir, "collector.gresource"))
+    resource._register()
+
+    from collector import main
+
+    sys.exit(main.main(VERSION))
