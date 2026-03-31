@@ -18,3 +18,4 @@ src/ui/settings.glade~
 .DS_Store
 po/*.mo
 venv
+result
