@@ -20,13 +20,6 @@ Drag multiple files and folders on to Collection window, drop them anywhere!
 nix run .#collector
 ```
 
-## Get the GNOME extension
-
-<a href="https://extensions.gnome.org/extension/6685/collector-complementary-extension/" align="center">
-  <img width="200" src="https://mijorus.it/gnome-extension.svg">
-</a>
-
-
 ___
 
 

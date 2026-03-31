@@ -22,7 +22,7 @@ jobs:
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: collector-${{ steps.tag.outputs.release_tag }}-x86_64.flatpak
-          manifest-path: it.mijorus.collector.json
+          manifest-path: sysfab.nix.collector.json
       - name: Publish release package
         uses: softprops/action-gh-release@v1
         env:

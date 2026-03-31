@@ -19,7 +19,6 @@ class SettingsWindow(Adw.PreferencesWindow):
     download_images_row = Gtk.Template.Child()
     download_images = Gtk.Template.Child()
     text_as_csv = Gtk.Template.Child()
-    open_gnome_ext = Gtk.Template.Child()
     configure_kde = Gtk.Template.Child()
     launch_shortcut = Gtk.Template.Child()
     launch_shortcut_windows = Gtk.Template.Child()
@@ -81,11 +80,6 @@ class SettingsWindow(Adw.PreferencesWindow):
             "clicked",
             on_click_open_uri,
             "https://mijorus.it/posts/collector/configure-kde",
-        )
-        self.open_gnome_ext.connect(
-            "clicked",
-            on_click_open_uri,
-            "https://mijorus.it/posts/collector/install-gnome-ext.html",
         )
 
     def on_click_open_uri(self, w: Gtk.Button, uri: str):

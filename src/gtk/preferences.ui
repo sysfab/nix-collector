@@ -51,18 +51,6 @@
             <property name="title" translatable="yes">Window behaviour</property>
             <child>
               <object class="AdwActionRow">
-                <property name="title" translatable="yes">Get GNOME extension</property>
-                <property name="subtitle" translatable="yes">The extention adds cool features like forcing Collector to stay always on top of other windows!</property>
-                <child>
-                  <object class="GtkButton" id="open_gnome_ext">
-                    <property name="icon-name">arrow2-top-right-symbolic</property>
-                    <property name="valign">center</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="AdwActionRow">
                 <property name="title" translatable="yes">Learn how to configure Collector on KDE</property>
                 <child>
                   <object class="GtkButton" id="configure_kde">
