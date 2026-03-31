@@ -18,34 +18,61 @@
 
 .collector-yellow {
     color: #FFBE0B;
+    background-color: #FFBE0B;
 }
 
 
 .collector-blue {
     color: #3a86ffff;
+    background-color: #3a86ffff;
 }
 
 
 .collector-purple {
     color: #8338ecff;
+    background-color: #8338ecff;
 }
 
 
 .collector-rose {
     color: #ff006eff;
+    background-color: #ff006eff;
 }
 
 
 .collector-orange {
     color: #fb5607ff;
+    background-color: #fb5607ff;
 }
 
 .collector-green {
     color: #52b788;
+    background-color: #52b788;
 }
 
-.collector-color-image {
-    margin: 5px;
+.collector-color-swatch {
+    min-width: 10px;
+    min-height: 10px;
+    border-radius: 999px;
+    margin: 0;
+}
+
+.collector-color-swatch-compact {
+    min-width: 8px;
+    min-height: 8px;
+    margin: 0;
+}
+
+.collector-color-button {
+    padding: 0;
+    min-width: 16px;
+    min-height: 16px;
+}
+
+.collector-color-choice {
+    padding: 2px;
+    min-width: 12px;
+    min-height: 12px;
 }
 
 .keep-items {

@@ -55,6 +55,7 @@ class CollectorWindow(Adw.ApplicationWindow):
         self.window_color = self.get_color()
         self.clipboard = Gdk.Display.get_default().get_clipboard()
         self.window_color_btn: Optional[Gtk.Button] = None
+        self.window_color_preview: Optional[Gtk.Widget] = None
         self.csvcollector: Optional[CsvCollector] = None
 
         header_bar = self.create_header_bar()
@@ -788,9 +789,22 @@ class CollectorWindow(Adw.ApplicationWindow):
         old_color = self.window_color
         self.window_color = color
 
-        if self.window_color_btn:
-            self.window_color_btn.remove_css_class(f"collector-{old_color}")
-            self.window_color_btn.add_css_class(f"collector-{color}")
+        if self.window_color_preview:
+            self.window_color_preview.remove_css_class(f"collector-{old_color}")
+            self.window_color_preview.add_css_class(f"collector-{color}")
+
+    def create_color_swatch(self, color, compact=False):
+        css_classes = ["collector-color-swatch", f"collector-{color}"]
+        if compact:
+            css_classes.append("collector-color-swatch-compact")
+
+        return Gtk.Box(
+            css_classes=css_classes,
+            hexpand=False,
+            vexpand=False,
+            halign=Gtk.Align.CENTER,
+            valign=Gtk.Align.CENTER,
+        )
 
     def create_drag_source_controller(self):
         drag_source_controller = Gtk.DragSource()
@@ -868,9 +882,12 @@ class CollectorWindow(Adw.ApplicationWindow):
         bottom_bar = Gtk.ActionBar()
 
         self.window_color_btn = Gtk.MenuButton(
-            icon_name="big-dot-symbolic",
-            css_classes=["flat", "circular", f"collector-{self.window_color}"],
+            css_classes=["flat", "circular", "collector-color-button"],
         )
+        self.window_color_preview = self.create_color_swatch(
+            self.window_color, compact=True
+        )
+        self.window_color_btn.set_child(self.window_color_preview)
 
         color_list = Gtk.FlowBox(
             homogeneous=True,
@@ -879,12 +896,9 @@ class CollectorWindow(Adw.ApplicationWindow):
         )
 
         for c in self.COLLECTOR_COLORS:
-            b = Gtk.Image(
-                icon_name="big-dot-symbolic",
-                css_classes=[f"collector-{c}", "collector-color-image"],
-            )
+            b = self.create_color_swatch(c)
 
-            r = Gtk.FlowBoxChild(child=b)
+            r = Gtk.FlowBoxChild(child=b, css_classes=["collector-color-choice"])
             r.__color = c
             color_list.append(r)
 

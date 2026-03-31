@@ -6,6 +6,8 @@
 
 Drag multiple files and folders on to Collection window, drop them anywhere!
 
+Nix-Collector is a fork of Collector by Lorenzo Paderi, adapted for a Nix-first workflow.
+
 - Browse and preview all your dropped items
 - Open multiple Collector windows with a shortcut and customize their color
 - Easily drag images from web browser windows and download them automatically
