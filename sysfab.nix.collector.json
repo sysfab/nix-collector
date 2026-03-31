@@ -27,8 +27,22 @@
         "./python3-requirements.json",
         {
             "name": "collector",
-            "builddir": true,
-            "buildsystem": "meson",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/bin /app/share/collector /app/share/applications /app/share/metainfo /app/share/glib-2.0/schemas /app/share/icons/hicolor/scalable/apps /app/share/icons/hicolor/symbolic/apps",
+                "glib-compile-resources src/collector.gresource.xml --sourcedir=src --target=collector.gresource",
+                "cp -r src /app/share/collector/collector",
+                "rm /app/share/collector/collector/collector.gresource.xml",
+                "cp collector.gresource /app/share/collector/collector.gresource",
+                "install -m755 src/collector /app/bin/collector",
+                "install -m644 data/sysfab.nix.collector.desktop.in /app/share/applications/sysfab.nix.collector.desktop",
+                "install -m644 data/sysfab.nix.collector.metainfo.xml.in /app/share/metainfo/sysfab.nix.collector.metainfo.xml",
+                "install -m644 data/sysfab.nix.collector.gschema.xml /app/share/glib-2.0/schemas/sysfab.nix.collector.gschema.xml",
+                "install -m644 data/icons/hicolor/scalable/apps/sysfab.nix.collector.svg /app/share/icons/hicolor/scalable/apps/sysfab.nix.collector.svg",
+                "install -m644 data/icons/hicolor/symbolic/apps/sysfab.nix.collector-symbolic.svg /app/share/icons/hicolor/symbolic/apps/sysfab.nix.collector-symbolic.svg",
+                "for po in po/*.po; do lang=$(basename \"$po\" .po); mkdir -p /app/share/locale/$lang/LC_MESSAGES; msgfmt \"$po\" -o /app/share/locale/$lang/LC_MESSAGES/collector.mo; done",
+                "glib-compile-schemas /app/share/glib-2.0/schemas"
+            ],
             "sources": [
                 {
                     "type": "dir",

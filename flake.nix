@@ -18,11 +18,20 @@
     {
       packages = forAllSystems (system: pkgs:
         let
+          appId = "sysfab.nix.collector";
+          appName = "collector";
+          shareDir = "$out/share/${appName}";
+          appDir = "${shareDir}/${appName}";
+          desktopFile = "${appId}.desktop";
+          metainfoFile = "${appId}.metainfo.xml";
+          schemaFile = "${appId}.gschema.xml";
+          scalableIcon = "${appId}.svg";
+          symbolicIcon = "${appId}-symbolic.svg";
           python = pkgs.python3;
           pythonPackages = pkgs.python3Packages;
 
           collector = pkgs.stdenv.mkDerivation {
-            pname = "collector";
+            pname = appName;
             version = "1.0.3";
             src = ./.;
 
@@ -61,39 +70,39 @@
             installPhase = ''
               runHook preInstall
 
-              mkdir -p "$out/bin"
-              mkdir -p "$out/share/collector"
-              mkdir -p "$out/share/applications"
-              mkdir -p "$out/share/metainfo"
-              mkdir -p "$out/share/glib-2.0/schemas"
-              mkdir -p "$out/share/icons/hicolor/scalable/apps"
-              mkdir -p "$out/share/icons/hicolor/symbolic/apps"
+              applicationsDir="$out/share/applications"
+              metainfoDir="$out/share/metainfo"
+              schemasDir="$out/share/glib-2.0/schemas"
+              scalableIconsDir="$out/share/icons/hicolor/scalable/apps"
+              symbolicIconsDir="$out/share/icons/hicolor/symbolic/apps"
 
-              cp -r src "$out/share/collector/collector"
-              rm "$out/share/collector/collector/collector.gresource.xml"
-              cp collector.gresource "$out/share/collector/collector.gresource"
+              mkdir -p "$out/bin" "${shareDir}" "$applicationsDir" "$metainfoDir" "$schemasDir" "$scalableIconsDir" "$symbolicIconsDir"
 
-              install -m755 src/collector "$out/bin/collector"
+              cp -r src "${appDir}"
+              rm "${appDir}/collector.gresource.xml"
+              cp collector.gresource "${shareDir}/collector.gresource"
 
-              install -m644 data/sysfab.nix.collector.desktop.in \
-                "$out/share/applications/sysfab.nix.collector.desktop"
-              install -m644 data/sysfab.nix.collector.metainfo.xml.in \
-                "$out/share/metainfo/sysfab.nix.collector.metainfo.xml"
-              install -m644 data/sysfab.nix.collector.gschema.xml \
-                "$out/share/glib-2.0/schemas/sysfab.nix.collector.gschema.xml"
+              install -m755 src/collector "$out/bin/${appName}"
 
-              install -m644 data/icons/hicolor/scalable/apps/sysfab.nix.collector.svg \
-                "$out/share/icons/hicolor/scalable/apps/sysfab.nix.collector.svg"
-              install -m644 data/icons/hicolor/symbolic/apps/sysfab.nix.collector-symbolic.svg \
-                "$out/share/icons/hicolor/symbolic/apps/sysfab.nix.collector-symbolic.svg"
+              install -m644 "data/${appId}.desktop.in" \
+                "$applicationsDir/${desktopFile}"
+              install -m644 "data/${appId}.metainfo.xml.in" \
+                "$metainfoDir/${metainfoFile}"
+              install -m644 "data/${appId}.gschema.xml" \
+                "$schemasDir/${schemaFile}"
+
+              install -m644 "data/icons/hicolor/scalable/apps/${scalableIcon}" \
+                "$scalableIconsDir/${scalableIcon}"
+              install -m644 "data/icons/hicolor/symbolic/apps/${symbolicIcon}" \
+                "$symbolicIconsDir/${symbolicIcon}"
 
               for poFile in po/*.po; do
                 lang="$(basename "$poFile" .po)"
                 mkdir -p "$out/share/locale/$lang/LC_MESSAGES"
-                msgfmt "$poFile" -o "$out/share/locale/$lang/LC_MESSAGES/collector.mo"
+                msgfmt "$poFile" -o "$out/share/locale/$lang/LC_MESSAGES/${appName}.mo"
               done
 
-              glib-compile-schemas "$out/share/glib-2.0/schemas"
+              glib-compile-schemas "$schemasDir"
 
               runHook postInstall
             '';
@@ -102,8 +111,8 @@
 
             installCheckPhase = ''
               runHook preInstallCheck
-              desktop-file-validate "$out/share/applications/sysfab.nix.collector.desktop"
-              appstreamcli validate --no-net --explain "$out/share/metainfo/sysfab.nix.collector.metainfo.xml"
+              desktop-file-validate "$out/share/applications/${desktopFile}"
+              appstreamcli validate --no-net --explain "$out/share/metainfo/${metainfoFile}"
               runHook postInstallCheck
             '';
 
@@ -113,10 +122,10 @@
 
             meta = with pkgs.lib; {
               description = "Drag-and-drop helper built with GTK4 and Libadwaita";
-              homepage = "https://github.com/mijorus/collector";
+              homepage = "https://github.com/sysfab/nix-collector";
               license = licenses.gpl3Plus;
               platforms = platforms.linux;
-              mainProgram = "collector";
+              mainProgram = appName;
             };
           };
         in

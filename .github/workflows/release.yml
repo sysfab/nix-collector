@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'meson.build'
+      - 'flake.nix'
+      - 'sysfab.nix.collector.json'
 
 jobs:
   build:
@@ -18,7 +19,7 @@ jobs:
       - name: Generate release tag
         id: tag
         run: |
-          echo "::set-output name=release_tag::$(cat meson.build | grep "\sversion.*" | grep -oE "'([^']+)'" | sed "s/'//g")"
+          echo "::set-output name=release_tag::$(grep -oE 'version = "[^"]+"' flake.nix | head -n1 | cut -d '"' -f2)"
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: collector-${{ steps.tag.outputs.release_tag }}-x86_64.flatpak
