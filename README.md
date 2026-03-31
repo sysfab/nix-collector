@@ -1,4 +1,4 @@
-# Collector - Drag and Drop to the next level
+# Nix-Collector - Drag and Drop to the next level (and on Nix)
 
 <p align="center">
 <img width="200" src="data/icons/hicolor/scalable/apps/sysfab.nix.collector.svg">
