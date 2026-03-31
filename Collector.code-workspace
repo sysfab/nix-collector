@@ -9,9 +9,8 @@
 			"**/.git/objects/**": true,
 			"**/.git/subtree-cache/**": true,
 			"**/.hg/store/**": true,
-			"**/node_modules/*/**": true,
-			".flatpak/**": true,
-			"_build/**": true
+            "**/node_modules/*/**": true,
+            "_build/**": true
 		}
 	}
 }

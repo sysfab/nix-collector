@@ -4,7 +4,6 @@
         "**/.git/subtree-cache/**": true,
         "**/.hg/store/**": true,
         "**/node_modules/*/**": true,
-        ".flatpak/**": true,
         "_build/**": true
     }
 }
